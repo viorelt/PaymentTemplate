@@ -11,10 +11,12 @@ import org.mapstruct.*;
 @Mapper(componentModel = "spring", uses = {TVersionMapper.class})
 public interface TemplateMapper extends EntityMapper<TemplateDTO, Template> {
 
+    @Mapping(source = "parent.id", target = "parentId")
     @Mapping(source = "lastVersion.id", target = "lastVersionId")
     TemplateDTO toDto(Template template);
 
     @Mapping(target = "versions", ignore = true)
+    @Mapping(source = "parentId", target = "parent")
     @Mapping(source = "lastVersionId", target = "lastVersion")
     Template toEntity(TemplateDTO templateDTO);
 
