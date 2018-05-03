@@ -28,12 +28,6 @@
             "relationshipName": "elements",
             "otherEntityName": "element",
             "otherEntityRelationshipName": "tVersion"
-        },
-        {
-            "relationshipType": "many-to-one",
-            "relationshipName": "parent",
-            "otherEntityName": "tVersion",
-            "otherEntityField": "id"
         }
     ],
     "fields": [

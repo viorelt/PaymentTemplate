@@ -17,6 +17,8 @@ public class TemplateDTO implements Serializable {
 
     private Long accountId;
 
+    private Long parentId;
+
     private Long lastVersionId;
 
     public Long getId() {
@@ -41,6 +43,14 @@ public class TemplateDTO implements Serializable {
 
     public void setAccountId(Long accountId) {
         this.accountId = accountId;
+    }
+
+    public Long getParentId() {
+        return parentId;
+    }
+
+    public void setParentId(Long templateId) {
+        this.parentId = templateId;
     }
 
     public Long getLastVersionId() {

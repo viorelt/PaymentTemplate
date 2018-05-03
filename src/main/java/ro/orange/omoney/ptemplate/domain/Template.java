@@ -45,6 +45,9 @@ public class Template implements Serializable {
     private Set<TVersion> versions = new HashSet<>();
 
     @ManyToOne
+    private Template parent;
+
+    @ManyToOne
     private TVersion lastVersion;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
@@ -105,6 +108,19 @@ public class Template implements Serializable {
 
     public void setVersions(Set<TVersion> tVersions) {
         this.versions = tVersions;
+    }
+
+    public Template getParent() {
+        return parent;
+    }
+
+    public Template parent(Template template) {
+        this.parent = template;
+        return this;
+    }
+
+    public void setParent(Template template) {
+        this.parent = template;
     }
 
     public TVersion getLastVersion() {

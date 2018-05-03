@@ -65,9 +65,6 @@ public class TVersion implements Serializable {
     @JsonIgnore
     private Set<Element> elements = new HashSet<>();
 
-    @ManyToOne
-    private TVersion parent;
-
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
         return id;
@@ -178,19 +175,6 @@ public class TVersion implements Serializable {
 
     public void setElements(Set<Element> elements) {
         this.elements = elements;
-    }
-
-    public TVersion getParent() {
-        return parent;
-    }
-
-    public TVersion parent(TVersion tVersion) {
-        this.parent = tVersion;
-        return this;
-    }
-
-    public void setParent(TVersion tVersion) {
-        this.parent = tVersion;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 

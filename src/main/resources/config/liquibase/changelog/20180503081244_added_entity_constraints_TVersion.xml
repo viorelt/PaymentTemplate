@@ -26,11 +26,5 @@
                                  referencedColumnNames="id"
                                  referencedTableName="t_backend"/>
 
-        <addForeignKeyConstraint baseColumnNames="parent_id"
-                                 baseTableName="t_version"
-                                 constraintName="fk_tversion_parent_id"
-                                 referencedColumnNames="id"
-                                 referencedTableName="t_version"/>
-
     </changeSet>
 </databaseChangeLog>

@@ -14,14 +14,12 @@ public interface TVersionMapper extends EntityMapper<TVersionDTO, TVersion> {
     @Mapping(source = "template.id", target = "templateId")
     @Mapping(source = "ui.id", target = "uiId")
     @Mapping(source = "backend.id", target = "backendId")
-    @Mapping(source = "parent.id", target = "parentId")
     TVersionDTO toDto(TVersion tVersion);
 
     @Mapping(source = "templateId", target = "template")
     @Mapping(source = "uiId", target = "ui")
     @Mapping(source = "backendId", target = "backend")
     @Mapping(target = "elements", ignore = true)
-    @Mapping(source = "parentId", target = "parent")
     TVersion toEntity(TVersionDTO tVersionDTO);
 
     default TVersion fromId(Long id) {

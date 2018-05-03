@@ -9,6 +9,12 @@
         },
         {
             "relationshipType": "many-to-one",
+            "relationshipName": "parent",
+            "otherEntityName": "template",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
             "relationshipName": "lastVersion",
             "otherEntityName": "tVersion",
             "otherEntityField": "id"

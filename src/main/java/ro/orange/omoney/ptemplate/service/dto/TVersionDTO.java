@@ -26,8 +26,6 @@ public class TVersionDTO implements Serializable {
 
     private Long backendId;
 
-    private Long parentId;
-
     public Long getId() {
         return id;
     }
@@ -82,14 +80,6 @@ public class TVersionDTO implements Serializable {
 
     public void setBackendId(Long tBackendId) {
         this.backendId = tBackendId;
-    }
-
-    public Long getParentId() {
-        return parentId;
-    }
-
-    public void setParentId(Long tVersionId) {
-        this.parentId = tVersionId;
     }
 
     @Override
