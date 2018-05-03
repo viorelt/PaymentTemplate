@@ -1,0 +1,37 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "versions",
+            "otherEntityName": "tVersion",
+            "otherEntityRelationshipName": "template"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "lastVersion",
+            "otherEntityName": "tVersion",
+            "otherEntityField": "id"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "code",
+            "javadoc": "The code that uniquely identifies a template",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "accountId",
+            "javadoc": "The user account identifier",
+            "fieldType": "Long"
+        }
+    ],
+    "changelogDate": "20180503081243",
+    "javadoc": "The entity is a payment template",
+    "entityTableName": "template",
+    "dto": "mapstruct",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "microserviceName": "PaymentTemplate"
+}

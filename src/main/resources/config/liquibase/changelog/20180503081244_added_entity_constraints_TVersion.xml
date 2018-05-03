@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <!--
+        Added the constraints for entity TVersion.
+    -->
+    <changeSet id="20180503081244-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="template_id"
+                                 baseTableName="t_version"
+                                 constraintName="fk_tversion_template_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="template"/>
+
+        <addForeignKeyConstraint baseColumnNames="ui_id"
+                                 baseTableName="t_version"
+                                 constraintName="fk_tversion_ui_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="t_ui"/>
+
+        <addForeignKeyConstraint baseColumnNames="backend_id"
+                                 baseTableName="t_version"
+                                 constraintName="fk_tversion_backend_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="t_backend"/>
+
+        <addForeignKeyConstraint baseColumnNames="parent_id"
+                                 baseTableName="t_version"
+                                 constraintName="fk_tversion_parent_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="t_version"/>
+
+    </changeSet>
+</databaseChangeLog>

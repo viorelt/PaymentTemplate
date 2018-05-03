@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <!--
+        Added the constraints for entity TInstance.
+    -->
+    <changeSet id="20180503081253-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="tinstances_id"
+                                 baseTableName="tinstance_template"
+                                 constraintName="tinstance_temp_tinstances_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="t_instance"/>
+        <addForeignKeyConstraint baseColumnNames="templates_id"
+                                 baseTableName="tinstance_template"
+                                 constraintName="tinstance_temp_templates_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="t_version"/>
+        
+    </changeSet>
+</databaseChangeLog>
