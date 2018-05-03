@@ -1,0 +1,8 @@
+version: '2'
+services:
+    paymenttemplate-app:
+        image: paymenttemplate
+        environment:
+            - SPRING_PROFILES_ACTIVE=prod,swagger
+            - SPRING_DATASOURCE_URL=jdbc:oracle:thin:@paymenttemplate-oracle:1521:PaymentTemplate
+            - JHIPSTER_SLEEP=10 # gives time for the database to boot before the application
