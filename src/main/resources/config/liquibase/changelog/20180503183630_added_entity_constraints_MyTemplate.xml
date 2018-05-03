@@ -4,15 +4,15 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
     <!--
-        Added the constraints for entity TUi.
+        Added the constraints for entity MyTemplate.
     -->
-    <changeSet id="20180503081246-2" author="jhipster">
+    <changeSet id="20180503183630-2" author="jhipster">
         
-        <addForeignKeyConstraint baseColumnNames="post_id"
-                                 baseTableName="t_ui"
-                                 constraintName="fk_tui_post_id"
+        <addForeignKeyConstraint baseColumnNames="static_template_id"
+                                 baseTableName="my_template"
+                                 constraintName="my_template_static_templa_id"
                                  referencedColumnNames="id"
-                                 referencedTableName="submit_action"/>
+                                 referencedTableName="template"/>
 
     </changeSet>
 </databaseChangeLog>

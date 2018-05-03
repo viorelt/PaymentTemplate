@@ -32,6 +32,7 @@ import static org.hamcrest.Matchers.hasItem;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
+import ro.orange.omoney.ptemplate.domain.enumeration.EUiType;
 /**
  * Test class for the EUiResource REST controller.
  *
@@ -41,8 +42,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest(classes = PaymentTemplateApp.class)
 public class EUiResourceIntTest {
 
-    private static final String DEFAULT_TYPE = "AAAAAAAAAA";
-    private static final String UPDATED_TYPE = "BBBBBBBBBB";
+    private static final EUiType DEFAULT_TYPE = EUiType.TEXT;
+    private static final EUiType UPDATED_TYPE = EUiType.NUMERIC;
 
     private static final Integer DEFAULT_INDEX = 1;
     private static final Integer UPDATED_INDEX = 2;

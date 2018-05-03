@@ -8,11 +8,11 @@
     -->
     <changeSet id="20180503081248-2" author="jhipster">
         
-        <addForeignKeyConstraint baseColumnNames="t_version_id"
+        <addForeignKeyConstraint baseColumnNames="template_id"
                                  baseTableName="element"
-                                 constraintName="fk_element_t_version_id"
+                                 constraintName="fk_element_template_id"
                                  referencedColumnNames="id"
-                                 referencedTableName="t_version"/>
+                                 referencedTableName="template"/>
 
         <addForeignKeyConstraint baseColumnNames="ui_id"
                                  baseTableName="element"

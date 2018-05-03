@@ -8,25 +8,21 @@ import java.util.Set;
 import java.util.Objects;
 
 /**
- * A DTO for the Template entity.
+ * A DTO for the MyTemplate entity.
  */
-public class TemplateDTO implements Serializable {
+public class MyTemplateDTO implements Serializable {
 
     private Long id;
 
-    private String code;
+    private Long accountId;
+
+    private String name;
 
     private String createdBy;
 
     private Instant createdDate;
 
-    private Boolean deleted;
-
-    private Long uiId;
-
-    private Long backendId;
-
-    private Long parentId;
+    private Long staticTemplateId;
 
     public Long getId() {
         return id;
@@ -36,12 +32,20 @@ public class TemplateDTO implements Serializable {
         this.id = id;
     }
 
-    public String getCode() {
-        return code;
+    public Long getAccountId() {
+        return accountId;
     }
 
-    public void setCode(String code) {
-        this.code = code;
+    public void setAccountId(Long accountId) {
+        this.accountId = accountId;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getCreatedBy() {
@@ -60,36 +64,12 @@ public class TemplateDTO implements Serializable {
         this.createdDate = createdDate;
     }
 
-    public Boolean isDeleted() {
-        return deleted;
+    public Long getStaticTemplateId() {
+        return staticTemplateId;
     }
 
-    public void setDeleted(Boolean deleted) {
-        this.deleted = deleted;
-    }
-
-    public Long getUiId() {
-        return uiId;
-    }
-
-    public void setUiId(Long tUiId) {
-        this.uiId = tUiId;
-    }
-
-    public Long getBackendId() {
-        return backendId;
-    }
-
-    public void setBackendId(Long tBackendId) {
-        this.backendId = tBackendId;
-    }
-
-    public Long getParentId() {
-        return parentId;
-    }
-
-    public void setParentId(Long templateId) {
-        this.parentId = templateId;
+    public void setStaticTemplateId(Long templateId) {
+        this.staticTemplateId = templateId;
     }
 
     @Override
@@ -101,11 +81,11 @@ public class TemplateDTO implements Serializable {
             return false;
         }
 
-        TemplateDTO templateDTO = (TemplateDTO) o;
-        if(templateDTO.getId() == null || getId() == null) {
+        MyTemplateDTO myTemplateDTO = (MyTemplateDTO) o;
+        if(myTemplateDTO.getId() == null || getId() == null) {
             return false;
         }
-        return Objects.equals(getId(), templateDTO.getId());
+        return Objects.equals(getId(), myTemplateDTO.getId());
     }
 
     @Override
@@ -115,12 +95,12 @@ public class TemplateDTO implements Serializable {
 
     @Override
     public String toString() {
-        return "TemplateDTO{" +
+        return "MyTemplateDTO{" +
             "id=" + getId() +
-            ", code='" + getCode() + "'" +
+            ", accountId=" + getAccountId() +
+            ", name='" + getName() + "'" +
             ", createdBy='" + getCreatedBy() + "'" +
             ", createdDate='" + getCreatedDate() + "'" +
-            ", deleted='" + isDeleted() + "'" +
             "}";
     }
 }

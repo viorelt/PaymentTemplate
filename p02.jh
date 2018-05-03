@@ -1,27 +1,37 @@
 
 /**
- * The entity is a payment template
+ * Entitatea reprezinta un sablon static pe baza caruia se vor genera sabloane
+ * in platile mele
  */
 entity Template {
 	/**
      * The code that uniquely identifies a template
      */
-	code String,    
+	code String,   
+     /**
+      * Who created the version
+      */
+    createdBy String,
     /**
+     * When the version was created
+     */
+    createdDate Instant,
+   
+    /**
+     * Flag to indicate if a particular template has been deleted 
+     */
+    deleted Boolean
+}
+
+entity MyTemplate{
+	/**
      * The user account identifier
      */
-    accountId Long    
-}
-/**
- * The class will keep versions of a specific template
- * It is necessary to version a template to have 
- * strong references from instances based on a particular version
- */
-entity TVersion{
-	/**
-     * The template version
+    accountId Long,
+    /**
+     * numele sub care a fost salvata plata mea
      */
-	version Long,
+     name String 
     /**
      * Who created the version
      */
@@ -31,13 +41,17 @@ entity TVersion{
      */
     createdDate Instant
 }
+
 /**
  * The TemplateBackend class is the extension of an attribute template 
  * used for certain backend processing
  */
 entity TBackend{
 	/**
-     * The payload type
+     * este tipul payload-ului si poate fi: numele unei clase,
+     * un anumit tip de plugin Spring cu ajutorul caruia se va face
+     * maparea dintre o structura sursa (de TransactionHistory)  
+     * in structura necesara template-ului curent
      */
 	type String,
     /**
@@ -52,12 +66,26 @@ entity TBackend{
 }
 
 entity TUi{
+	/**
+     * pathul pentru iconul ce apare in dreptul fiecarui template
+     * in ecranul platile mele
+     */
 	 icon String,
-     name String 
+    /**
+     * reprezinta culoarea aferenta tipului de template
+     */
+   	boxColor String
 }
 
-entity PostCommand{
+entity SubmitAction{
+	
+    /**
+     * cheia pentru eticheta butonului prin care se face plata
+     */
 	labelKey String,
+    /**
+     * endpointul la care se face plata
+     */
     endpoint String
 }
 
@@ -65,39 +93,105 @@ entity PostCommand{
  * The Element entity
  */
 entity Element{
+	/**
+     * The code of a specific lelement.
+     * This code must ensure the uniqueness of the template version
+     */
 	code String,
-	name String
+    /**
+     * The name of a specific element
+     */
+	name String,
+     /**
+      * Flag to indicate if a particular template has been deleted 
+      */
+    deleted Boolean
        	    
 }
+
+enum EUiType{
+ TEXT, NUMERIC, DATE, CHECKBOX, SELECTION, EMAIL, IBAN, PHONE
+}
+
 /**
  * The ElementUi entity
  */
 entity EUi{
-	type String,    
+    /**
+     * tipul elementului
+     */
+	type EUiType,  
+    /**
+     * ordinea elementului in pagina
+     */
     index Integer,    
+    /**
+     * path-ul relativ pentru elementul curent
+     */
     icon String,
+    /**
+     * cheia labelului pentru elementul curent
+     */    
     labelKey String,
+    /**
+     * cheia descrierii pentru elementul curent
+     */
     descriptionKey String,    
+    /**
+     * cheia pentru sugestia aferenta elementului curent
+     */    
     hintKey String,
+    /**
+     * true daca elementul este readonly
+     */
     readOnly Boolean,   
+    /**
+     * true daca elementul este obligatoriu de introdus
+     */
     required Boolean,
+    /**
+     * true daca elementul este vizibil
+     */
     visible Boolean,
+    /**
+     * formatul necesar interfetei grafice, care va fi aplicat
+     * pe valoarea venita din backend
+     */
     format String,
+    /**
+     * validatorul pentru elementul curent
+     */
     validator String 
 }
 
 /**
- * The ElementBackend entity
+ * Entitatea EBackend pastreaza configurarile necesare
+ * procesarii elementului curent pe server
  */
 entity EBackend{
+
+	/**
+     * numele java aferent elementului curent
+     */
 	name String,
+    /**
+     *  tipul java aferent elementului curent
+     */
     type String,
+    /**
+     *  formatul java aferent elementului curent
+     */
     format String,
+    /**
+     *  validatorul java aferent elementului curent
+     */
     validator String
 }
 
 /**
- * The ElementValue entity
+ * EValue reprezinta valoarea elementului curent si
+ * este fie o valoare definita la nivel de template static,
+ * fie la nivel de myTemplate.
  */
 entity EValue{
 	 value String
@@ -105,42 +199,45 @@ entity EValue{
 }
 
 /**
- * The ValueOption entity
+ * Entitatea ValueOption reprezinta un option pentru un element de tipul
+ * EUiType.SELECTION
  */
 entity ValueOption{
+	/**
+     *  label reprezinta ceea ce vizualizeaza utilizatorul
+     * din cadrul unui select-option
+     */
 	label String,
+    /**
+     *  value reprezinta ceea ce a selectat utilizatorul
+     * din cadrul unui select-option si va fi trimis catre
+     * backend
+     */
     value String
 }
 
-entity TInstance{
-	createdBy String,
-    createdDate Instant
-}
 
 relationship OneToOne{
 	Element{ui} to EUi
     Element{backend} to EBackend
     Element{init} to EValue
-    TVersion{ui} to TUi
-    TVersion{backend} to TBackend
-    TUi{post} to PostCommand
+    Template{ui} to TUi
+    Template{backend} to TBackend
+    TUi{post} to SubmitAction
 }
 relationship ManyToOne{
 	Template{parent} to Template
-    Template{lastVersion} to TVersion
+   	MyTemplate{staticTemplate} to Template
     EValue{element} to Element
 }
 
 relationship OneToMany {
-	TVersion{elements} to Element
-    Template{versions} to TVersion
+	Template{elements} to Element    
     EUi{options} to ValueOption
-    TInstance{properties} to EValue
+    MyTemplate{properties} to EValue
 }
 
-relationship ManyToMany {
-	TInstance{template} to TVersion
-}
+
 
 dto * with mapstruct
 service all with serviceImpl

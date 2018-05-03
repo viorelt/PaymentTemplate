@@ -25,11 +25,11 @@
                 <constraints nullable="true" />
             </column>
 
-            <column name="element_id" type="bigint">
+            <column name="my_template_id" type="bigint">
                 <constraints nullable="true" />
             </column>
 
-            <column name="t_instance_id" type="bigint">
+            <column name="element_id" type="bigint">
                 <constraints nullable="true" />
             </column>
 

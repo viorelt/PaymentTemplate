@@ -5,6 +5,7 @@ import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.Objects;
+import ro.orange.omoney.ptemplate.domain.enumeration.EUiType;
 
 /**
  * A DTO for the EUi entity.
@@ -13,7 +14,7 @@ public class EUiDTO implements Serializable {
 
     private Long id;
 
-    private String type;
+    private EUiType type;
 
     private Integer index;
 
@@ -43,11 +44,11 @@ public class EUiDTO implements Serializable {
         this.id = id;
     }
 
-    public String getType() {
+    public EUiType getType() {
         return type;
     }
 
-    public void setType(String type) {
+    public void setType(EUiType type) {
         this.type = type;
     }
 

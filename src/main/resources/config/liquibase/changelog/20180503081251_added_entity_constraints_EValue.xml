@@ -8,17 +8,17 @@
     -->
     <changeSet id="20180503081251-2" author="jhipster">
         
+        <addForeignKeyConstraint baseColumnNames="my_template_id"
+                                 baseTableName="e_value"
+                                 constraintName="fk_evalue_my_template_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="my_template"/>
+
         <addForeignKeyConstraint baseColumnNames="element_id"
                                  baseTableName="e_value"
                                  constraintName="fk_evalue_element_id"
                                  referencedColumnNames="id"
                                  referencedTableName="element"/>
-
-        <addForeignKeyConstraint baseColumnNames="t_instance_id"
-                                 baseTableName="e_value"
-                                 constraintName="fk_evalue_t_instance_id"
-                                 referencedColumnNames="id"
-                                 referencedTableName="t_instance"/>
 
     </changeSet>
 </databaseChangeLog>

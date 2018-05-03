@@ -1,6 +1,7 @@
 package ro.orange.omoney.ptemplate.domain;
 
 import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 
 import javax.persistence.*;
 
@@ -22,14 +23,30 @@ public class Element implements Serializable {
     @SequenceGenerator(name = "sequenceGenerator")
     private Long id;
 
+    /**
+     * The code of a specific lelement.
+     * This code must ensure the uniqueness of the template version
+     */
+    @ApiModelProperty(value = "The code of a specific lelement. This code must ensure the uniqueness of the template version")
     @Column(name = "code")
     private String code;
 
+    /**
+     * The name of a specific element
+     */
+    @ApiModelProperty(value = "The name of a specific element")
     @Column(name = "name")
     private String name;
 
+    /**
+     * Flag to indicate if a particular template has been deleted
+     */
+    @ApiModelProperty(value = "Flag to indicate if a particular template has been deleted")
+    @Column(name = "deleted")
+    private Boolean deleted;
+
     @ManyToOne
-    private TVersion tVersion;
+    private Template template;
 
     @OneToOne
     @JoinColumn(unique = true)
@@ -78,17 +95,30 @@ public class Element implements Serializable {
         this.name = name;
     }
 
-    public TVersion getTVersion() {
-        return tVersion;
+    public Boolean isDeleted() {
+        return deleted;
     }
 
-    public Element tVersion(TVersion tVersion) {
-        this.tVersion = tVersion;
+    public Element deleted(Boolean deleted) {
+        this.deleted = deleted;
         return this;
     }
 
-    public void setTVersion(TVersion tVersion) {
-        this.tVersion = tVersion;
+    public void setDeleted(Boolean deleted) {
+        this.deleted = deleted;
+    }
+
+    public Template getTemplate() {
+        return template;
+    }
+
+    public Element template(Template template) {
+        this.template = template;
+        return this;
+    }
+
+    public void setTemplate(Template template) {
+        this.template = template;
     }
 
     public EUi getUi() {
@@ -157,6 +187,7 @@ public class Element implements Serializable {
             "id=" + getId() +
             ", code='" + getCode() + "'" +
             ", name='" + getName() + "'" +
+            ", deleted='" + isDeleted() + "'" +
             "}";
     }
 }

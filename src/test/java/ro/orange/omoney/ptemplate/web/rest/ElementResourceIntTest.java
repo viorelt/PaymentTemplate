@@ -47,6 +47,9 @@ public class ElementResourceIntTest {
     private static final String DEFAULT_NAME = "AAAAAAAAAA";
     private static final String UPDATED_NAME = "BBBBBBBBBB";
 
+    private static final Boolean DEFAULT_DELETED = false;
+    private static final Boolean UPDATED_DELETED = true;
+
     @Autowired
     private ElementRepository elementRepository;
 
@@ -92,7 +95,8 @@ public class ElementResourceIntTest {
     public static Element createEntity(EntityManager em) {
         Element element = new Element()
             .code(DEFAULT_CODE)
-            .name(DEFAULT_NAME);
+            .name(DEFAULT_NAME)
+            .deleted(DEFAULT_DELETED);
         return element;
     }
 
@@ -119,6 +123,7 @@ public class ElementResourceIntTest {
         Element testElement = elementList.get(elementList.size() - 1);
         assertThat(testElement.getCode()).isEqualTo(DEFAULT_CODE);
         assertThat(testElement.getName()).isEqualTo(DEFAULT_NAME);
+        assertThat(testElement.isDeleted()).isEqualTo(DEFAULT_DELETED);
     }
 
     @Test
@@ -153,7 +158,8 @@ public class ElementResourceIntTest {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(element.getId().intValue())))
             .andExpect(jsonPath("$.[*].code").value(hasItem(DEFAULT_CODE.toString())))
-            .andExpect(jsonPath("$.[*].name").value(hasItem(DEFAULT_NAME.toString())));
+            .andExpect(jsonPath("$.[*].name").value(hasItem(DEFAULT_NAME.toString())))
+            .andExpect(jsonPath("$.[*].deleted").value(hasItem(DEFAULT_DELETED.booleanValue())));
     }
 
     @Test
@@ -168,7 +174,8 @@ public class ElementResourceIntTest {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(element.getId().intValue()))
             .andExpect(jsonPath("$.code").value(DEFAULT_CODE.toString()))
-            .andExpect(jsonPath("$.name").value(DEFAULT_NAME.toString()));
+            .andExpect(jsonPath("$.name").value(DEFAULT_NAME.toString()))
+            .andExpect(jsonPath("$.deleted").value(DEFAULT_DELETED.booleanValue()));
     }
 
     @Test
@@ -192,7 +199,8 @@ public class ElementResourceIntTest {
         em.detach(updatedElement);
         updatedElement
             .code(UPDATED_CODE)
-            .name(UPDATED_NAME);
+            .name(UPDATED_NAME)
+            .deleted(UPDATED_DELETED);
         ElementDTO elementDTO = elementMapper.toDto(updatedElement);
 
         restElementMockMvc.perform(put("/api/elements")
@@ -206,6 +214,7 @@ public class ElementResourceIntTest {
         Element testElement = elementList.get(elementList.size() - 1);
         assertThat(testElement.getCode()).isEqualTo(UPDATED_CODE);
         assertThat(testElement.getName()).isEqualTo(UPDATED_NAME);
+        assertThat(testElement.isDeleted()).isEqualTo(UPDATED_DELETED);
     }
 
     @Test
