@@ -1,0 +1,146 @@
+
+/**
+ * The entity is a payment template
+ */
+entity Template {
+	/**
+     * The code that uniquely identifies a template
+     */
+	code String,    
+    /**
+     * The user account identifier
+     */
+    accountId Long    
+}
+/**
+ * The class will keep versions of a specific template
+ * It is necessary to version a template to have 
+ * strong references from instances based on a particular version
+ */
+entity TVersion{
+	/**
+     * The template version
+     */
+	version Long,
+    /**
+     * Who created the version
+     */
+    createdBy String,
+    /**
+     * When the version was created
+     */
+    createdDate Instant
+}
+/**
+ * The TemplateBackend class is the extension of an attribute template 
+ * used for certain backend processing
+ */
+entity TBackend{
+	/**
+     * The payload type
+     */
+	type String,
+    /**
+     * Boolean.TRUE if the template is used for recurring payments
+     */
+    recurrence Boolean,
+    /**
+     * The date on which payment is automatically made
+     */
+    recurringDate Instant
+    
+}
+
+entity TUi{
+	 icon String,
+     name String 
+}
+
+entity PostCommand{
+	labelKey String,
+    endpoint String
+}
+
+/**
+ * The Element entity
+ */
+entity Element{
+	code String,
+	name String
+       	    
+}
+/**
+ * The ElementUi entity
+ */
+entity EUi{
+	type String,    
+    index Integer,    
+    icon String,
+    labelKey String,
+    descriptionKey String,    
+    hintKey String,
+    readOnly Boolean,   
+    required Boolean,
+    visible Boolean,
+    format String,
+    validator String 
+}
+
+/**
+ * The ElementBackend entity
+ */
+entity EBackend{
+	name String,
+    type String,
+    format String,
+    validator String
+}
+
+/**
+ * The ElementValue entity
+ */
+entity EValue{
+	 value String
+     
+}
+
+/**
+ * The ValueOption entity
+ */
+entity ValueOption{
+	label String,
+    value String
+}
+
+entity TInstance{
+	createdBy String,
+    createdDate Instant
+}
+
+relationship OneToOne{
+	Element{ui} to EUi
+    Element{backend} to EBackend
+    Element{init} to EValue
+    TVersion{ui} to TUi
+    TVersion{backend} to TBackend
+    TUi{post} to PostCommand
+}
+relationship ManyToOne{
+	TVersion{parent} to TVersion
+    Template{lastVersion} to TVersion
+    EValue{element} to Element
+}
+
+relationship OneToMany {
+	TVersion{elements} to Element
+    Template{versions} to TVersion
+    EUi{options} to ValueOption
+    TInstance{properties} to EValue
+}
+
+relationship ManyToMany {
+	TInstance{template} to TVersion
+}
+
+dto * with mapstruct
+service all with serviceImpl

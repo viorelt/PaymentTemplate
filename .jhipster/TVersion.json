@@ -1,0 +1,64 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipName": "template",
+            "otherEntityName": "template",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "ui",
+            "otherEntityName": "tUi",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "tVersion"
+        },
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "backend",
+            "otherEntityName": "tBackend",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "tVersion"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "elements",
+            "otherEntityName": "element",
+            "otherEntityRelationshipName": "tVersion"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "parent",
+            "otherEntityName": "tVersion",
+            "otherEntityField": "id"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "version",
+            "javadoc": "The template version",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "createdBy",
+            "javadoc": "Who created the version",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "createdDate",
+            "javadoc": "When the version was created",
+            "fieldType": "Instant"
+        }
+    ],
+    "changelogDate": "20180503081244",
+    "javadoc": "The class will keep versions of a specific template\nIt is necessary to version a template to have\nstrong references from instances based on a particular version",
+    "entityTableName": "t_version",
+    "dto": "mapstruct",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "microserviceName": "PaymentTemplate"
+}

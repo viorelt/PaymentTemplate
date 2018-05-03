@@ -1,0 +1,21 @@
+{
+    "fluentMethods": true,
+    "relationships": [],
+    "fields": [
+        {
+            "fieldName": "labelKey",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "endpoint",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20180503081247",
+    "entityTableName": "post_command",
+    "dto": "mapstruct",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "microserviceName": "PaymentTemplate"
+}

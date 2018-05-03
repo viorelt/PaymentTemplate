@@ -1,0 +1,31 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "element",
+            "otherEntityName": "element",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipName": "tInstance",
+            "otherEntityName": "tInstance",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "value",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20180503081251",
+    "javadoc": "The ElementValue entity",
+    "entityTableName": "e_value",
+    "dto": "mapstruct",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "microserviceName": "PaymentTemplate"
+}

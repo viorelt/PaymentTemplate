@@ -1,0 +1,65 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "options",
+            "otherEntityName": "valueOption",
+            "otherEntityRelationshipName": "eUi"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "type",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "index",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "icon",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "labelKey",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "descriptionKey",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "hintKey",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "readOnly",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "required",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "visible",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "format",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "validator",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20180503081249",
+    "javadoc": "The ElementUi entity",
+    "entityTableName": "e_ui",
+    "dto": "mapstruct",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "microserviceName": "PaymentTemplate"
+}

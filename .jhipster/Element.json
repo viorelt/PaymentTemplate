@@ -1,0 +1,53 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipName": "tVersion",
+            "otherEntityName": "tVersion",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "ui",
+            "otherEntityName": "eUi",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "element"
+        },
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "backend",
+            "otherEntityName": "eBackend",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "element"
+        },
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "init",
+            "otherEntityName": "eValue",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "element"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "code",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "name",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20180503081248",
+    "javadoc": "The Element entity",
+    "entityTableName": "element",
+    "dto": "mapstruct",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "microserviceName": "PaymentTemplate"
+}
