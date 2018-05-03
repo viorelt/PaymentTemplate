@@ -26,9 +26,12 @@ public class TBackend implements Serializable {
     private Long id;
 
     /**
-     * The payload type
+     * este tipul payload-ului si poate fi: numele unei clase,
+     * un anumit tip de plugin Spring cu ajutorul caruia se va face
+     * maparea dintre o structura sursa (de TransactionHistory)
+     * in structura necesara template-ului curent
      */
-    @ApiModelProperty(value = "The payload type")
+    @ApiModelProperty(value = "este tipul payload-ului si poate fi: numele unei clase, un anumit tip de plugin Spring cu ajutorul caruia se va face maparea dintre o structura sursa (de TransactionHistory) in structura necesara template-ului curent")
     @Column(name = "jhi_type")
     private String type;
 

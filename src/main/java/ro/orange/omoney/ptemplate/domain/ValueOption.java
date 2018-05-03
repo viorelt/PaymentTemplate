@@ -1,6 +1,7 @@
 package ro.orange.omoney.ptemplate.domain;
 
 import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 
 import javax.persistence.*;
 
@@ -8,9 +9,10 @@ import java.io.Serializable;
 import java.util.Objects;
 
 /**
- * The ValueOption entity
+ * Entitatea ValueOption reprezinta un option pentru un element de tipul
+ * EUiType.SELECTION
  */
-@ApiModel(description = "The ValueOption entity")
+@ApiModel(description = "Entitatea ValueOption reprezinta un option pentru un element de tipul EUiType.SELECTION")
 @Entity
 @Table(name = "value_option")
 public class ValueOption implements Serializable {
@@ -22,9 +24,20 @@ public class ValueOption implements Serializable {
     @SequenceGenerator(name = "sequenceGenerator")
     private Long id;
 
+    /**
+     * label reprezinta ceea ce vizualizeaza utilizatorul
+     * din cadrul unui select-option
+     */
+    @ApiModelProperty(value = "label reprezinta ceea ce vizualizeaza utilizatorul din cadrul unui select-option")
     @Column(name = "jhi_label")
     private String label;
 
+    /**
+     * value reprezinta ceea ce a selectat utilizatorul
+     * din cadrul unui select-option si va fi trimis catre
+     * backend
+     */
+    @ApiModelProperty(value = "value reprezinta ceea ce a selectat utilizatorul din cadrul unui select-option si va fi trimis catre backend")
     @Column(name = "jhi_value")
     private String value;
 

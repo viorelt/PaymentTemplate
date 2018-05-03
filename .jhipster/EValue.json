@@ -2,15 +2,15 @@
     "fluentMethods": true,
     "relationships": [
         {
+            "relationshipName": "myTemplate",
+            "otherEntityName": "myTemplate",
             "relationshipType": "many-to-one",
-            "relationshipName": "element",
-            "otherEntityName": "element",
             "otherEntityField": "id"
         },
         {
-            "relationshipName": "tInstance",
-            "otherEntityName": "tInstance",
             "relationshipType": "many-to-one",
+            "relationshipName": "element",
+            "otherEntityName": "element",
             "otherEntityField": "id"
         }
     ],
@@ -21,7 +21,7 @@
         }
     ],
     "changelogDate": "20180503081251",
-    "javadoc": "The ElementValue entity",
+    "javadoc": "EValue reprezinta valoarea elementului curent si\neste fie o valoare definita la nivel de template static,\nfie la nivel de myTemplate.",
     "entityTableName": "e_value",
     "dto": "mapstruct",
     "pagination": "no",

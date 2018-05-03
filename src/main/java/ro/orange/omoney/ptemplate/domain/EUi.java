@@ -2,6 +2,7 @@ package ro.orange.omoney.ptemplate.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 
 import javax.persistence.*;
 
@@ -9,6 +10,8 @@ import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.Objects;
+
+import ro.orange.omoney.ptemplate.domain.enumeration.EUiType;
 
 /**
  * The ElementUi entity
@@ -25,36 +28,82 @@ public class EUi implements Serializable {
     @SequenceGenerator(name = "sequenceGenerator")
     private Long id;
 
+    /**
+     * tipul elementului
+     */
+    @ApiModelProperty(value = "tipul elementului")
+    @Enumerated(EnumType.STRING)
     @Column(name = "jhi_type")
-    private String type;
+    private EUiType type;
 
+    /**
+     * ordinea elementului in pagina
+     */
+    @ApiModelProperty(value = "ordinea elementului in pagina")
     @Column(name = "jhi_index")
     private Integer index;
 
+    /**
+     * path-ul relativ pentru elementul curent
+     */
+    @ApiModelProperty(value = "path-ul relativ pentru elementul curent")
     @Column(name = "icon")
     private String icon;
 
+    /**
+     * cheia labelului pentru elementul curent
+     */
+    @ApiModelProperty(value = "cheia labelului pentru elementul curent")
     @Column(name = "label_key")
     private String labelKey;
 
+    /**
+     * cheia descrierii pentru elementul curent
+     */
+    @ApiModelProperty(value = "cheia descrierii pentru elementul curent")
     @Column(name = "description_key")
     private String descriptionKey;
 
+    /**
+     * cheia pentru sugestia aferenta elementului curent
+     */
+    @ApiModelProperty(value = "cheia pentru sugestia aferenta elementului curent")
     @Column(name = "hint_key")
     private String hintKey;
 
+    /**
+     * true daca elementul este readonly
+     */
+    @ApiModelProperty(value = "true daca elementul este readonly")
     @Column(name = "read_only")
     private Boolean readOnly;
 
+    /**
+     * true daca elementul este obligatoriu de introdus
+     */
+    @ApiModelProperty(value = "true daca elementul este obligatoriu de introdus")
     @Column(name = "required")
     private Boolean required;
 
+    /**
+     * true daca elementul este vizibil
+     */
+    @ApiModelProperty(value = "true daca elementul este vizibil")
     @Column(name = "visible")
     private Boolean visible;
 
+    /**
+     * formatul necesar interfetei grafice, care va fi aplicat
+     * pe valoarea venita din backend
+     */
+    @ApiModelProperty(value = "formatul necesar interfetei grafice, care va fi aplicat pe valoarea venita din backend")
     @Column(name = "format")
     private String format;
 
+    /**
+     * validatorul pentru elementul curent
+     */
+    @ApiModelProperty(value = "validatorul pentru elementul curent")
     @Column(name = "validator")
     private String validator;
 
@@ -71,16 +120,16 @@ public class EUi implements Serializable {
         this.id = id;
     }
 
-    public String getType() {
+    public EUiType getType() {
         return type;
     }
 
-    public EUi type(String type) {
+    public EUi type(EUiType type) {
         this.type = type;
         return this;
     }
 
-    public void setType(String type) {
+    public void setType(EUiType type) {
         this.type = type;
     }
 

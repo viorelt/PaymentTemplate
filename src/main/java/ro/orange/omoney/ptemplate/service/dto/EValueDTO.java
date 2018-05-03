@@ -15,9 +15,9 @@ public class EValueDTO implements Serializable {
 
     private String value;
 
-    private Long elementId;
+    private Long myTemplateId;
 
-    private Long tInstanceId;
+    private Long elementId;
 
     public Long getId() {
         return id;
@@ -35,20 +35,20 @@ public class EValueDTO implements Serializable {
         this.value = value;
     }
 
+    public Long getMyTemplateId() {
+        return myTemplateId;
+    }
+
+    public void setMyTemplateId(Long myTemplateId) {
+        this.myTemplateId = myTemplateId;
+    }
+
     public Long getElementId() {
         return elementId;
     }
 
     public void setElementId(Long elementId) {
         this.elementId = elementId;
-    }
-
-    public Long getTInstanceId() {
-        return tInstanceId;
-    }
-
-    public void setTInstanceId(Long tInstanceId) {
-        this.tInstanceId = tInstanceId;
     }
 
     @Override

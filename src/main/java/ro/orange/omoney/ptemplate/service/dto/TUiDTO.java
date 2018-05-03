@@ -15,7 +15,7 @@ public class TUiDTO implements Serializable {
 
     private String icon;
 
-    private String name;
+    private String boxColor;
 
     private Long postId;
 
@@ -35,20 +35,20 @@ public class TUiDTO implements Serializable {
         this.icon = icon;
     }
 
-    public String getName() {
-        return name;
+    public String getBoxColor() {
+        return boxColor;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setBoxColor(String boxColor) {
+        this.boxColor = boxColor;
     }
 
     public Long getPostId() {
         return postId;
     }
 
-    public void setPostId(Long postCommandId) {
-        this.postId = postCommandId;
+    public void setPostId(Long submitActionId) {
+        this.postId = submitActionId;
     }
 
     @Override
@@ -77,7 +77,7 @@ public class TUiDTO implements Serializable {
         return "TUiDTO{" +
             "id=" + getId() +
             ", icon='" + getIcon() + "'" +
-            ", name='" + getName() + "'" +
+            ", boxColor='" + getBoxColor() + "'" +
             "}";
     }
 }

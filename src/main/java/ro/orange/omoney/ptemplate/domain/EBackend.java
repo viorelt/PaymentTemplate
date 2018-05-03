@@ -1,6 +1,7 @@
 package ro.orange.omoney.ptemplate.domain;
 
 import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 
 import javax.persistence.*;
 
@@ -8,9 +9,10 @@ import java.io.Serializable;
 import java.util.Objects;
 
 /**
- * The ElementBackend entity
+ * Entitatea EBackend pastreaza configurarile necesare
+ * procesarii elementului curent pe server
  */
-@ApiModel(description = "The ElementBackend entity")
+@ApiModel(description = "Entitatea EBackend pastreaza configurarile necesare procesarii elementului curent pe server")
 @Entity
 @Table(name = "e_backend")
 public class EBackend implements Serializable {
@@ -22,15 +24,31 @@ public class EBackend implements Serializable {
     @SequenceGenerator(name = "sequenceGenerator")
     private Long id;
 
+    /**
+     * numele java aferent elementului curent
+     */
+    @ApiModelProperty(value = "numele java aferent elementului curent")
     @Column(name = "name")
     private String name;
 
+    /**
+     * tipul java aferent elementului curent
+     */
+    @ApiModelProperty(value = "tipul java aferent elementului curent")
     @Column(name = "jhi_type")
     private String type;
 
+    /**
+     * formatul java aferent elementului curent
+     */
+    @ApiModelProperty(value = "formatul java aferent elementului curent")
     @Column(name = "format")
     private String format;
 
+    /**
+     * validatorul java aferent elementului curent
+     */
+    @ApiModelProperty(value = "validatorul java aferent elementului curent")
     @Column(name = "validator")
     private String validator;
 

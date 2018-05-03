@@ -2,8 +2,8 @@
     "fluentMethods": true,
     "relationships": [
         {
-            "relationshipName": "tVersion",
-            "otherEntityName": "tVersion",
+            "relationshipName": "template",
+            "otherEntityName": "template",
             "relationshipType": "many-to-one",
             "otherEntityField": "id"
         },
@@ -35,11 +35,18 @@
     "fields": [
         {
             "fieldName": "code",
+            "javadoc": "The code of a specific lelement.\nThis code must ensure the uniqueness of the template version",
             "fieldType": "String"
         },
         {
             "fieldName": "name",
+            "javadoc": "The name of a specific element",
             "fieldType": "String"
+        },
+        {
+            "fieldName": "deleted",
+            "javadoc": "Flag to indicate if a particular template has been deleted",
+            "fieldType": "Boolean"
         }
     ],
     "changelogDate": "20180503081248",

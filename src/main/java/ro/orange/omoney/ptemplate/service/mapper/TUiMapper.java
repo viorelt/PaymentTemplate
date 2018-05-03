@@ -8,7 +8,7 @@ import org.mapstruct.*;
 /**
  * Mapper for the entity TUi and its DTO TUiDTO.
  */
-@Mapper(componentModel = "spring", uses = {PostCommandMapper.class})
+@Mapper(componentModel = "spring", uses = {SubmitActionMapper.class})
 public interface TUiMapper extends EntityMapper<TUiDTO, TUi> {
 
     @Mapping(source = "post.id", target = "postId")

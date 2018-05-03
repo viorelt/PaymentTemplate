@@ -4,7 +4,7 @@
         {
             "relationshipType": "one-to-one",
             "relationshipName": "post",
-            "otherEntityName": "postCommand",
+            "otherEntityName": "submitAction",
             "otherEntityField": "id",
             "ownerSide": true,
             "otherEntityRelationshipName": "tUi"
@@ -13,10 +13,12 @@
     "fields": [
         {
             "fieldName": "icon",
+            "javadoc": "pathul pentru iconul ce apare in dreptul fiecarui template\nin ecranul platile mele",
             "fieldType": "String"
         },
         {
-            "fieldName": "name",
+            "fieldName": "boxColor",
+            "javadoc": "reprezinta culoarea aferenta tipului de template",
             "fieldType": "String"
         }
     ],

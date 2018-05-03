@@ -44,8 +44,8 @@ public class TUiResourceIntTest {
     private static final String DEFAULT_ICON = "AAAAAAAAAA";
     private static final String UPDATED_ICON = "BBBBBBBBBB";
 
-    private static final String DEFAULT_NAME = "AAAAAAAAAA";
-    private static final String UPDATED_NAME = "BBBBBBBBBB";
+    private static final String DEFAULT_BOX_COLOR = "AAAAAAAAAA";
+    private static final String UPDATED_BOX_COLOR = "BBBBBBBBBB";
 
     @Autowired
     private TUiRepository tUiRepository;
@@ -92,7 +92,7 @@ public class TUiResourceIntTest {
     public static TUi createEntity(EntityManager em) {
         TUi tUi = new TUi()
             .icon(DEFAULT_ICON)
-            .name(DEFAULT_NAME);
+            .boxColor(DEFAULT_BOX_COLOR);
         return tUi;
     }
 
@@ -118,7 +118,7 @@ public class TUiResourceIntTest {
         assertThat(tUiList).hasSize(databaseSizeBeforeCreate + 1);
         TUi testTUi = tUiList.get(tUiList.size() - 1);
         assertThat(testTUi.getIcon()).isEqualTo(DEFAULT_ICON);
-        assertThat(testTUi.getName()).isEqualTo(DEFAULT_NAME);
+        assertThat(testTUi.getBoxColor()).isEqualTo(DEFAULT_BOX_COLOR);
     }
 
     @Test
@@ -153,7 +153,7 @@ public class TUiResourceIntTest {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(tUi.getId().intValue())))
             .andExpect(jsonPath("$.[*].icon").value(hasItem(DEFAULT_ICON.toString())))
-            .andExpect(jsonPath("$.[*].name").value(hasItem(DEFAULT_NAME.toString())));
+            .andExpect(jsonPath("$.[*].boxColor").value(hasItem(DEFAULT_BOX_COLOR.toString())));
     }
 
     @Test
@@ -168,7 +168,7 @@ public class TUiResourceIntTest {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(tUi.getId().intValue()))
             .andExpect(jsonPath("$.icon").value(DEFAULT_ICON.toString()))
-            .andExpect(jsonPath("$.name").value(DEFAULT_NAME.toString()));
+            .andExpect(jsonPath("$.boxColor").value(DEFAULT_BOX_COLOR.toString()));
     }
 
     @Test
@@ -192,7 +192,7 @@ public class TUiResourceIntTest {
         em.detach(updatedTUi);
         updatedTUi
             .icon(UPDATED_ICON)
-            .name(UPDATED_NAME);
+            .boxColor(UPDATED_BOX_COLOR);
         TUiDTO tUiDTO = tUiMapper.toDto(updatedTUi);
 
         restTUiMockMvc.perform(put("/api/t-uis")
@@ -205,7 +205,7 @@ public class TUiResourceIntTest {
         assertThat(tUiList).hasSize(databaseSizeBeforeUpdate);
         TUi testTUi = tUiList.get(tUiList.size() - 1);
         assertThat(testTUi.getIcon()).isEqualTo(UPDATED_ICON);
-        assertThat(testTUi.getName()).isEqualTo(UPDATED_NAME);
+        assertThat(testTUi.getBoxColor()).isEqualTo(UPDATED_BOX_COLOR);
     }
 
     @Test

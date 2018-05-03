@@ -8,9 +8,11 @@ import java.io.Serializable;
 import java.util.Objects;
 
 /**
- * The ElementValue entity
+ * EValue reprezinta valoarea elementului curent si
+ * este fie o valoare definita la nivel de template static,
+ * fie la nivel de myTemplate.
  */
-@ApiModel(description = "The ElementValue entity")
+@ApiModel(description = "EValue reprezinta valoarea elementului curent si este fie o valoare definita la nivel de template static, fie la nivel de myTemplate.")
 @Entity
 @Table(name = "e_value")
 public class EValue implements Serializable {
@@ -26,10 +28,10 @@ public class EValue implements Serializable {
     private String value;
 
     @ManyToOne
-    private Element element;
+    private MyTemplate myTemplate;
 
     @ManyToOne
-    private TInstance tInstance;
+    private Element element;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -53,6 +55,19 @@ public class EValue implements Serializable {
         this.value = value;
     }
 
+    public MyTemplate getMyTemplate() {
+        return myTemplate;
+    }
+
+    public EValue myTemplate(MyTemplate myTemplate) {
+        this.myTemplate = myTemplate;
+        return this;
+    }
+
+    public void setMyTemplate(MyTemplate myTemplate) {
+        this.myTemplate = myTemplate;
+    }
+
     public Element getElement() {
         return element;
     }
@@ -64,19 +79,6 @@ public class EValue implements Serializable {
 
     public void setElement(Element element) {
         this.element = element;
-    }
-
-    public TInstance getTInstance() {
-        return tInstance;
-    }
-
-    public EValue tInstance(TInstance tInstance) {
-        this.tInstance = tInstance;
-        return this;
-    }
-
-    public void setTInstance(TInstance tInstance) {
-        this.tInstance = tInstance;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 

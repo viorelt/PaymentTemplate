@@ -24,6 +24,8 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
+import java.time.Instant;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
 
 import static ro.orange.omoney.ptemplate.web.rest.TestUtil.createFormattingConversionService;
@@ -44,8 +46,14 @@ public class TemplateResourceIntTest {
     private static final String DEFAULT_CODE = "AAAAAAAAAA";
     private static final String UPDATED_CODE = "BBBBBBBBBB";
 
-    private static final Long DEFAULT_ACCOUNT_ID = 1L;
-    private static final Long UPDATED_ACCOUNT_ID = 2L;
+    private static final String DEFAULT_CREATED_BY = "AAAAAAAAAA";
+    private static final String UPDATED_CREATED_BY = "BBBBBBBBBB";
+
+    private static final Instant DEFAULT_CREATED_DATE = Instant.ofEpochMilli(0L);
+    private static final Instant UPDATED_CREATED_DATE = Instant.now().truncatedTo(ChronoUnit.MILLIS);
+
+    private static final Boolean DEFAULT_DELETED = false;
+    private static final Boolean UPDATED_DELETED = true;
 
     @Autowired
     private TemplateRepository templateRepository;
@@ -92,7 +100,9 @@ public class TemplateResourceIntTest {
     public static Template createEntity(EntityManager em) {
         Template template = new Template()
             .code(DEFAULT_CODE)
-            .accountId(DEFAULT_ACCOUNT_ID);
+            .createdBy(DEFAULT_CREATED_BY)
+            .createdDate(DEFAULT_CREATED_DATE)
+            .deleted(DEFAULT_DELETED);
         return template;
     }
 
@@ -118,7 +128,9 @@ public class TemplateResourceIntTest {
         assertThat(templateList).hasSize(databaseSizeBeforeCreate + 1);
         Template testTemplate = templateList.get(templateList.size() - 1);
         assertThat(testTemplate.getCode()).isEqualTo(DEFAULT_CODE);
-        assertThat(testTemplate.getAccountId()).isEqualTo(DEFAULT_ACCOUNT_ID);
+        assertThat(testTemplate.getCreatedBy()).isEqualTo(DEFAULT_CREATED_BY);
+        assertThat(testTemplate.getCreatedDate()).isEqualTo(DEFAULT_CREATED_DATE);
+        assertThat(testTemplate.isDeleted()).isEqualTo(DEFAULT_DELETED);
     }
 
     @Test
@@ -153,7 +165,9 @@ public class TemplateResourceIntTest {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(template.getId().intValue())))
             .andExpect(jsonPath("$.[*].code").value(hasItem(DEFAULT_CODE.toString())))
-            .andExpect(jsonPath("$.[*].accountId").value(hasItem(DEFAULT_ACCOUNT_ID.intValue())));
+            .andExpect(jsonPath("$.[*].createdBy").value(hasItem(DEFAULT_CREATED_BY.toString())))
+            .andExpect(jsonPath("$.[*].createdDate").value(hasItem(DEFAULT_CREATED_DATE.toString())))
+            .andExpect(jsonPath("$.[*].deleted").value(hasItem(DEFAULT_DELETED.booleanValue())));
     }
 
     @Test
@@ -168,7 +182,9 @@ public class TemplateResourceIntTest {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(template.getId().intValue()))
             .andExpect(jsonPath("$.code").value(DEFAULT_CODE.toString()))
-            .andExpect(jsonPath("$.accountId").value(DEFAULT_ACCOUNT_ID.intValue()));
+            .andExpect(jsonPath("$.createdBy").value(DEFAULT_CREATED_BY.toString()))
+            .andExpect(jsonPath("$.createdDate").value(DEFAULT_CREATED_DATE.toString()))
+            .andExpect(jsonPath("$.deleted").value(DEFAULT_DELETED.booleanValue()));
     }
 
     @Test
@@ -192,7 +208,9 @@ public class TemplateResourceIntTest {
         em.detach(updatedTemplate);
         updatedTemplate
             .code(UPDATED_CODE)
-            .accountId(UPDATED_ACCOUNT_ID);
+            .createdBy(UPDATED_CREATED_BY)
+            .createdDate(UPDATED_CREATED_DATE)
+            .deleted(UPDATED_DELETED);
         TemplateDTO templateDTO = templateMapper.toDto(updatedTemplate);
 
         restTemplateMockMvc.perform(put("/api/templates")
@@ -205,7 +223,9 @@ public class TemplateResourceIntTest {
         assertThat(templateList).hasSize(databaseSizeBeforeUpdate);
         Template testTemplate = templateList.get(templateList.size() - 1);
         assertThat(testTemplate.getCode()).isEqualTo(UPDATED_CODE);
-        assertThat(testTemplate.getAccountId()).isEqualTo(UPDATED_ACCOUNT_ID);
+        assertThat(testTemplate.getCreatedBy()).isEqualTo(UPDATED_CREATED_BY);
+        assertThat(testTemplate.getCreatedDate()).isEqualTo(UPDATED_CREATED_DATE);
+        assertThat(testTemplate.isDeleted()).isEqualTo(UPDATED_DELETED);
     }
 
     @Test

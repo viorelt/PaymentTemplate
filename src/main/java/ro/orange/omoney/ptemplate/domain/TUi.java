@@ -1,5 +1,6 @@
 package ro.orange.omoney.ptemplate.domain;
 
+import io.swagger.annotations.ApiModelProperty;
 
 import javax.persistence.*;
 
@@ -20,15 +21,24 @@ public class TUi implements Serializable {
     @SequenceGenerator(name = "sequenceGenerator")
     private Long id;
 
+    /**
+     * pathul pentru iconul ce apare in dreptul fiecarui template
+     * in ecranul platile mele
+     */
+    @ApiModelProperty(value = "pathul pentru iconul ce apare in dreptul fiecarui template in ecranul platile mele")
     @Column(name = "icon")
     private String icon;
 
-    @Column(name = "name")
-    private String name;
+    /**
+     * reprezinta culoarea aferenta tipului de template
+     */
+    @ApiModelProperty(value = "reprezinta culoarea aferenta tipului de template")
+    @Column(name = "box_color")
+    private String boxColor;
 
     @OneToOne
     @JoinColumn(unique = true)
-    private PostCommand post;
+    private SubmitAction post;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -52,30 +62,30 @@ public class TUi implements Serializable {
         this.icon = icon;
     }
 
-    public String getName() {
-        return name;
+    public String getBoxColor() {
+        return boxColor;
     }
 
-    public TUi name(String name) {
-        this.name = name;
+    public TUi boxColor(String boxColor) {
+        this.boxColor = boxColor;
         return this;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setBoxColor(String boxColor) {
+        this.boxColor = boxColor;
     }
 
-    public PostCommand getPost() {
+    public SubmitAction getPost() {
         return post;
     }
 
-    public TUi post(PostCommand postCommand) {
-        this.post = postCommand;
+    public TUi post(SubmitAction submitAction) {
+        this.post = submitAction;
         return this;
     }
 
-    public void setPost(PostCommand postCommand) {
-        this.post = postCommand;
+    public void setPost(SubmitAction submitAction) {
+        this.post = submitAction;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
@@ -104,7 +114,7 @@ public class TUi implements Serializable {
         return "TUi{" +
             "id=" + getId() +
             ", icon='" + getIcon() + "'" +
-            ", name='" + getName() + "'" +
+            ", boxColor='" + getBoxColor() + "'" +
             "}";
     }
 }
