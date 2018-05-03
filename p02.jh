@@ -126,7 +126,7 @@ relationship OneToOne{
     TUi{post} to PostCommand
 }
 relationship ManyToOne{
-	TVersion{parent} to TVersion
+	Template{parent} to Template
     Template{lastVersion} to TVersion
     EValue{element} to Element
 }
